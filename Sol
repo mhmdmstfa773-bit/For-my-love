@@ -1,0 +1,134 @@
+here<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>استبيان خاص جداً</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #fff0f3;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+        .container {
+            padding: 20px;
+            width: 90%;
+            max-width: 400px;
+        }
+        h1 { color: #ff4d6d; font-size: 22px; margin-bottom: 30px; line-height: 1.5; }
+        .step { display: none; animation: fadeIn 0.5s ease; }
+        .step.active { display: block; }
+        
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 15px;
+            background-color: #ff4d6d;
+            color: white;
+            transition: transform 0.2s;
+        }
+        button:active { transform: scale(0.95); }
+        .secondary-btn { background-color: #ff85a1; }
+
+        #finalMessage { 
+            color: #590d22; 
+            line-height: 1.8; 
+            font-size: 19px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- المرحلة 1 -->
+    <div id="step1" class="step active">
+        <h1>تعرفين شنو سبب تواجدج هنا؟</h1>
+        <button onclick="nextStep(1, 2)">إي أعرف</button>
+        <button class="secondary-btn" onclick="nextStep(1, 2)">لا ما عندي فكرة</button>
+    </div>
+
+    <!-- المرحلة 2 -->
+    <div id="step2" class="step">
+        <h1>أكو واحد نسى عيد ميلادج، تعرفيه؟</h1>
+        <button onclick="nextStep(2, 3)">إي أعرفه</button>
+        <button class="secondary-btn" onclick="nextStep(2, 3)">إي طبعاً ماكو حيوان غيره</button>
+    </div>
+
+    <!-- المرحلة 3 -->
+    <div id="step3" class="step">
+        <h1>هم ناوية تسامحينه؟</h1>
+        <button onclick="showFinal()">إي مو مشكلة</button>
+        <button class="secondary-btn" onclick="nextStep(3, 4)">لا خل يولي</button>
+    </div>
+
+    <!-- محاولة الإقناع -->
+    <div id="step4" class="step">
+        <h1>همممم... راح أحاول وياج</h1>
+        <button onclick="nextStep(4, 5)">يلا خل أشوف</button>
+        <button class="secondary-btn" onclick="nextStep(4, 5)">لا تحاول</button>
+    </div>
+
+    <!-- المرحلة 5 -->
+    <div id="step5" class="step">
+        <h1>هممممم، منو حبيبج؟</h1>
+        <button onclick="nextStep(5, 6)">أنت</button>
+        <button class="secondary-btn" onclick="nextStep(5, 6)">ولي ولك</button>
+    </div>
+
+    <!-- المرحلة 6 -->
+    <div id="step6" class="step">
+        <h1>ننننن، زين تدرين بي يحبج ويموت عليج لو لا؟</h1>
+        <button onclick="nextStep(6, 7)">أدري</button>
+        <button class="secondary-btn" onclick="nextStep(6, 7)">خل يولي</button>
+    </div>
+
+    <!-- المرحلة 7 -->
+    <div id="step7" class="step">
+        <h1>حبابة سامحيه </h1>
+        <button onclick="showFinal()">سامحته</button>
+        <button class="secondary-btn" onclick="showFinal()">لا ما قنعت (هم راح يسامح)</button>
+    </div>
+
+    <!-- الرسالة النهائية -->
+    <div id="finalMessage" class="step">
+        <h2 style="color: #ff4d6d;">أدري بيج تسامحيني </h2>
+        <p>لأن ما عندج خيار ثاني، أنتي باقية وياي بكل الأحوال.. <br>
+        صحيح نسيت ميلادج، بس هالشي ما يعني إن أني هاملج، <br>
+        أنتي أقرب إنسان إلي وأعز شخص أعرفه بحياتي وأكثر من أثق بيه، <br>
+        أحبج يبعد دنيتي كلها.</p>
+    </div>
+</div>
+
+<script>
+    function nextStep(current, next) {
+        document.getElementById('step' + current).classList.remove('active');
+        document.getElementById('step' + next).classList.add('active');
+    }
+
+    function showFinal() {
+        // إخفاء كل المراحل وإظهار الرسالة النهائية
+        const steps = document.querySelectorAll('.step');
+        steps.forEach(step => step.classList.remove('active'));
+        document.getElementById('finalMessage').classList.add('active');
+    }
+</script>
+
+</body>
+</html>
